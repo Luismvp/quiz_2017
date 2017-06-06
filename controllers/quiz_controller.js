@@ -195,9 +195,9 @@ exports.randomplay = function(req,res,next) {
 
         //funcion random
         function random(){
-            var random = Math.floor(Math.random()*(quizzes.length - 1) + 1);
+            var random = Math.floor(Math.random()*((quizzes.length+1) - 1) + 1);
             if(req.session.quizzes.length>0){
-                for (var i = 0; i < req.session.quizzes.length -1 ; i++) {
+                for (var i = 0; i < req.session.quizzes.length ; i++) {
                     if(req.session.quizzes[i] === random){
                         boolean = 1;
                         return;
@@ -216,7 +216,7 @@ exports.randomplay = function(req,res,next) {
                     });
             } 
         }   
-        if ((req.session.score < quizzes.length-1) || (typeof req.session.score === "undefined")) {
+        if ((req.session.score < quizzes.length) || (typeof req.session.score === "undefined")) {
 
             //ejecucion de random
             if(typeof req.session.quizzes !== "undefined"){
