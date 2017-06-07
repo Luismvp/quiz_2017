@@ -8,8 +8,7 @@ var boolean = 0;
 exports.load = function (req, res, next, quizId) {
 
     models.Quiz.findById(quizId, {
-        include: [
-            models.Tip,
+        include: [ {model: models.Tip , include:[{ model: models.User , as: 'Author'}]},
             {model: models.User, as: 'Author'}
         ]
     })
@@ -273,6 +272,7 @@ exports.randomplay = function(req,res,next) {
                                         res.render('quizzes/randomplay',{
                                             quiz:quiz,
                                             score:req.session.score
+                                            
                                         });
                                     })
                                     .catch(function (error){
